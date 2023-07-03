@@ -30,6 +30,11 @@ export default {
       )
     },
   },
+  computed: {
+    orderedPokemons() {
+      return this.pokemons.sort((prev, next) => prev.number > next.number ? 1 : -1)
+    }
+  }
 }
 </script>
 
@@ -37,7 +42,7 @@ export default {
   <div class="container py-5">
     <h1 class="text-center mb-5">POKEDEX</h1>
     <div class="row row-cols-3 g-4">
-      <div v-for="pokemon in pokemons" :key="pokemon.number" class="col">
+      <div v-for="pokemon in orderedPokemons" :key="pokemon.number" class="col">
         <div class="card">
           <div class="card-img-top">
             <img class="img-fluid" :src="pokemon.imageUrl" alt="">
