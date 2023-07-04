@@ -61,7 +61,7 @@ export default {
   <div v-else class="container py-5">
     <div class="row row-cols-3 g-4">
       <div v-for="pokemon in orderedPokemons" :key="pokemon._id" class="col">
-        <div class="card">
+        <div class="card" :class="pokemon.color">
           <div class="card-img-top">
             <img class="img-fluid" :src="pokemon.imageUrl" alt="">
           </div>
@@ -76,7 +76,7 @@ export default {
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 .loading {
   position: fixed;
   top: 0;
@@ -88,6 +88,54 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card {
+  &.Green {
+    background-color: green;
+  }
+
+  &.Red {
+    background-color: red;
+    color: white;
+
+  }
+
+  &.Blue {
+    background-color: blue;
+    color: white;
+  }
+
+  &.Black {
+    background-color: black;
+    color: white;
+  }
+
+  &.Yellow {
+    background-color: yellow;
+  }
+
+  &.White {
+    background-color: white;
+  }
+
+  &.Brown {
+    background-color: brown;
+    color: white;
+  }
+
+  &.Grey {
+    background-color: gray;
+  }
+
+  &.Pink {
+    background-color: pink;
+  }
+
+  &.Purple {
+    background-color: purple;
+    color: white;
+  }
 }
 
 .card-img-top {
