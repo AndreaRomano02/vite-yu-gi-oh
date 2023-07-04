@@ -12,6 +12,7 @@ export default {
     return {
       options: store.options,
       userSelect: '',
+      userText: '',
     }
   },
   methods: {
@@ -23,15 +24,25 @@ export default {
       })
     },
   },
-  emits: ['change-type']
+  emits: ['change-type', 'search-text', 'reset-text']
 }
 </script>
 
 <template>
-  <select v-model="userSelect" @change="$emit('change-type', userSelect)">
-    <option value="">...</option>
-    <option v-for="option in options">{{ option }}</option>
-  </select>
+  <div class="d-flex">
+
+    <select class="form-select w-25" v-model="userSelect" @change="$emit('change-type', userSelect)">
+      <option value="">...</option>
+      <option v-for="option in options">{{ option }}</option>
+    </select>
+
+    <input v-model="userText" @keyup="$emit('search-text', userText)" type="text" placeholder="Cerca..."
+      class="form-control ms-5 w-25">
+    <span class="ms-2" title="Delete filter">
+      <font-awesome-icon @click="$emit('reset-text', userText = '')" icon="fa-solid fa-xmark" size="2xl"
+        style="color:red; cursor:pointer;" />
+    </span>
+  </div>
 </template>
 
 <style scoped>

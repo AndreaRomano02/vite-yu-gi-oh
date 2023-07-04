@@ -45,6 +45,10 @@ export default {
 
       return this.getPokemons(filteredEndpoint)
     },
+    filterText(userText) {
+      const filteredEndpoint = endpoint + `/?start[name]=${userText}`
+      return this.getPokemons(filteredEndpoint)
+    },
   },
   computed: {
     orderedPokemons() {
@@ -55,7 +59,7 @@ export default {
 </script>
 
 <template>
-  <AppFilter @change-type="this.filterType" />
+  <AppFilter @change-type="filterType" @search-text="filterText" @reset-text="filterText" />
 
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">

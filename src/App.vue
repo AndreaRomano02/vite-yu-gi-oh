@@ -1,6 +1,7 @@
 <script>
 import AppMain from './components/AppMain.vue';
 import AppHeader from './components/AppHeader.vue';
+
 //* Import the page of data store
 import { store } from './assets/data/store.js'
 
