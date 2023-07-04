@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <AppHeader :options="store.options" />
+  <AppHeader />
   <AppMain :pokemons="store.pokemons" />
 </template>
 

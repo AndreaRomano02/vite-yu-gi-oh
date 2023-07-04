@@ -1,11 +1,13 @@
 <script>
 const endpoint = 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons';
 
+import AppFilter from './AppFilter.vue';
 // Import lybrary Axios
 import axios from 'axios';
 
 // LOGIC
 export default {
+  components: { AppFilter },
   props: {
     pokemons: Array,
   },
@@ -45,6 +47,7 @@ export default {
 </script>
 
 <template>
+  <AppFilter />
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">
     <div class="row row-cols-3 g-4">
@@ -64,7 +67,7 @@ export default {
   </div>
 </template>
 
-<style>
+<style scoped>
 .loading {
   position: fixed;
   top: 0;
