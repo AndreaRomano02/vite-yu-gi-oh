@@ -6,34 +6,50 @@ import { store } from '../assets/data/store.js'
 
 export default {
   created() {
-    this.getPokemonsType()
+    this.getPokemonsType('types1')
+    this.getPokemonsType('types2')
   },
   data: () => {
     return {
-      options: store.options,
-      userSelect: '',
+      options1: store.options,
+      options2: store.options2,
+      userSelect1: '',
+      userSelect2: '',
       userText: '',
     }
   },
   methods: {
-    getPokemonsType() {
-      axios.get(`${endpoint}/types1`).then(res => {
-        res.data.forEach(option => {
-          this.options.push(option);
+    getPokemonsType(type) {
+      if (type === 'types1') {
+        axios.get(`${endpoint}/${type}`).then(res => {
+          res.data.forEach(option => {
+            this.options1.push(option);
+          })
         })
-      })
+      } else if (type === 'types2') {
+        axios.get(`${endpoint}/${type}`).then(res => {
+          res.data.forEach(option => {
+            this.options2.push(option);
+          })
+        })
+      }
     },
   },
-  emits: ['change-type', 'search-text', 'reset-text']
+  emits: ['change-type1', 'change-type2', 'search-text', 'reset-text']
 }
 </script>
 
 <template>
   <div class="d-flex">
 
-    <select class="form-select w-25" v-model="userSelect" @change="$emit('change-type', userSelect)">
-      <option value="">...</option>
-      <option v-for="option in options">{{ option }}</option>
+    <select class="form-select w-25" v-model="userSelect1" @change="$emit('change-type1', userSelect1)">
+      <option value="">First Type</option>
+      <option v-for="option in options1">{{ option }}</option>
+    </select>
+
+    <select class="form-select w-25" v-model="userSelect2" @change="$emit('change-type2', userSelect2)">
+      <option value="">Second Type</option>
+      <option v-for="option in options2">{{ option }}</option>
     </select>
 
     <input v-model="userText" @keyup="$emit('search-text', userText)" type="text" placeholder="Cerca..."

@@ -38,10 +38,17 @@ export default {
           this.isLoading = false
         });
     },
-    filterType(userSelect) {
+    filterType1(userSelect) {
 
       if (!userSelect) return this.getPokemons(endpoint)
       const filteredEndpoint = endpoint + `/?eq[type1]=${userSelect}`
+
+      return this.getPokemons(filteredEndpoint)
+    },
+    filterType2(userSelect) {
+
+      if (!userSelect) return this.getPokemons(endpoint)
+      const filteredEndpoint = endpoint + `/?eq[type2]=${userSelect}`
 
       return this.getPokemons(filteredEndpoint)
     },
@@ -59,7 +66,7 @@ export default {
 </script>
 
 <template>
-  <AppFilter @change-type="filterType" @search-text="filterText" @reset-text="filterText" />
+  <AppFilter @change-type1="filterType1" @change-type2="filterType2" @search-text="filterText" @reset-text="filterText" />
 
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">
