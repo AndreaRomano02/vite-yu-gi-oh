@@ -1,4 +1,5 @@
 <script>
+const endpoint = 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons';
 
 // Import lybrary Axios
 import axios from 'axios';
@@ -21,7 +22,7 @@ export default {
   },
   methods: {
     getPokemons() {
-      axios.get('https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/api/v1/pokemons?eq[type1]=Electric&sort[number]=desc')
+      axios.get(endpoint)
         .then(res => {
           res.data.docs.forEach(doc => {
             this.pokemons.push(doc);
@@ -46,7 +47,6 @@ export default {
 <template>
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">
-    <h1 class="text-center mb-5">POKEDEX</h1>
     <div class="row row-cols-3 g-4">
       <div v-for="pokemon in orderedPokemons" :key="pokemon.number" class="col">
         <div class="card">
