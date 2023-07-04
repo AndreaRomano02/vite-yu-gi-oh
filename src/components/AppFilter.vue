@@ -8,6 +8,7 @@ export default {
       userSelect: '',
     }
   },
+  emits: ['change-type']
 }
 </script>
 

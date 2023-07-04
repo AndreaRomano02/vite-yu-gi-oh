@@ -38,7 +38,9 @@ export default {
         });
     },
     filterType(userSelect) {
-      console.log(userSelect)
+      const filteredEndpoint = endpoint + `/?eq[type1]=${userSelect}`
+
+      this.getPokemons(filteredEndpoint)
     },
   },
   computed: {
