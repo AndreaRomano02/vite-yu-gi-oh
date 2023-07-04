@@ -116,18 +116,17 @@ export default {
 
 .card {
   &.Green {
-    background-color: green;
+    background-color: lightgreen;
   }
 
   &.Red {
-    background-color: red;
+    background-color: lightcoral;
     color: white;
 
   }
 
   &.Blue {
-    background-color: blue;
-    color: white;
+    background-color: lightblue;
   }
 
   &.Black {
@@ -136,7 +135,7 @@ export default {
   }
 
   &.Yellow {
-    background-color: yellow;
+    background-color: lightyellow;
   }
 
   &.White {
@@ -157,7 +156,7 @@ export default {
   }
 
   &.Purple {
-    background-color: purple;
+    background-color: plum;
     color: white;
   }
 }
