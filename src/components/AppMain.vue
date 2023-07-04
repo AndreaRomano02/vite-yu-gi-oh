@@ -4,13 +4,12 @@ const endpoint = 'https://41tyokboji.execute-api.eu-central-1.amazonaws.com/dev/
 import AppFilter from './AppFilter.vue';
 // Import lybrary Axios
 import axios from 'axios';
+import { store } from '../assets/data/store.js'
 
 // LOGIC
 export default {
+
   components: { AppFilter },
-  props: {
-    pokemons: Array,
-  },
   created() {
 
     // Riempio l'array dei pokemons al montare della pagina
@@ -19,6 +18,7 @@ export default {
   },
   data() {
     return {
+      pokemons: store.pokemons,
       isLoading: false,
     }
   },
@@ -26,6 +26,7 @@ export default {
     getPokemons(endpoint) {
       axios.get(endpoint)
         .then(res => {
+          this.pokemons = [];
           res.data.docs.forEach(doc => {
             this.pokemons.push(doc);
           })
@@ -38,9 +39,11 @@ export default {
         });
     },
     filterType(userSelect) {
+
+      if (!userSelect) return this.getPokemons(endpoint)
       const filteredEndpoint = endpoint + `/?eq[type1]=${userSelect}`
 
-      this.getPokemons(filteredEndpoint)
+      return this.getPokemons(filteredEndpoint)
     },
   },
   computed: {
@@ -57,7 +60,7 @@ export default {
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">
     <div class="row row-cols-3 g-4">
-      <div v-for="pokemon in orderedPokemons" :key="pokemon.number" class="col">
+      <div v-for="pokemon in orderedPokemons" :key="pokemon._id" class="col">
         <div class="card">
           <div class="card-img-top">
             <img class="img-fluid" :src="pokemon.imageUrl" alt="">

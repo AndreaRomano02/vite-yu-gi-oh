@@ -16,7 +16,7 @@ export default {
 
 <template>
   <AppHeader />
-  <AppMain :pokemons="store.pokemons" />
+  <AppMain />
 </template>
 
 <style lang="scss">
