@@ -23,6 +23,8 @@ export default {
     }
   },
   methods: {
+
+    // Take pokemons from API
     getPokemons(endpoint) {
       axios.get(endpoint)
         .then(res => {
@@ -38,6 +40,8 @@ export default {
           this.isLoading = false
         });
     },
+
+    // Filter by first Type of Pokemons
     filterType1(userSelect) {
 
       if (!userSelect) return this.getPokemons(endpoint)
@@ -45,6 +49,8 @@ export default {
 
       return this.getPokemons(filteredEndpoint)
     },
+
+    // Filter by second Type of Pokemons
     filterType2(userSelect) {
 
       if (!userSelect) return this.getPokemons(endpoint)
@@ -52,6 +58,8 @@ export default {
 
       return this.getPokemons(filteredEndpoint)
     },
+
+    // Filter by name of Pokemons
     filterText(userText) {
       const filteredEndpoint = endpoint + `/?start[name]=${userText}`
       return this.getPokemons(filteredEndpoint)
@@ -66,9 +74,14 @@ export default {
 </script>
 
 <template>
+  <!-- App For Filter the pokemons card -->
   <AppFilter @change-type1="filterType1" @change-type2="filterType2" @search-text="filterText" @reset-text="filterText" />
 
+
+  <!-- LOADING -->
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
+
+  <!-- POKEDEX -->
   <div v-else class="container py-5">
     <div class="row row-cols-3 g-4">
       <div v-for="pokemon in orderedPokemons" :key="pokemon._id" class="col">

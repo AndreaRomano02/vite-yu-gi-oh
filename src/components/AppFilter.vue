@@ -42,16 +42,19 @@ export default {
 <template>
   <div class="d-flex">
 
+    <!-- FIRST SELECT FOR FIRST TYPE -->
     <select class="form-select w-25" v-model="userSelect1" @change="$emit('change-type1', userSelect1)">
       <option value="">First Type</option>
       <option v-for="option in options1">{{ option }}</option>
     </select>
 
+    <!-- SECOND SELECT FOR SECOND TYPE -->
     <select class="form-select w-25" v-model="userSelect2" @change="$emit('change-type2', userSelect2)">
       <option value="">Second Type</option>
       <option v-for="option in options2">{{ option }}</option>
     </select>
 
+    <!-- INPUT FOR FILTER BY TEXT -->
     <input v-model="userText" @keyup="$emit('search-text', userText)" type="text" placeholder="Cerca..."
       class="form-control ms-5 w-25">
     <span class="ms-2" title="Delete filter">
