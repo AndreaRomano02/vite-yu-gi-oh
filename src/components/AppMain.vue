@@ -14,7 +14,7 @@ export default {
   created() {
 
     // Riempio l'array dei pokemons al montare della pagina
-    this.getPokemons();
+    this.getPokemons(endpoint);
     this.isLoading = true;
   },
   data() {
@@ -23,7 +23,7 @@ export default {
     }
   },
   methods: {
-    getPokemons() {
+    getPokemons(endpoint) {
       axios.get(endpoint)
         .then(res => {
           res.data.docs.forEach(doc => {
@@ -37,17 +37,21 @@ export default {
           this.isLoading = false
         });
     },
+    filterType(userSelect) {
+      console.log(userSelect)
+    },
   },
   computed: {
     orderedPokemons() {
       return this.pokemons.sort((prev, next) => prev.number > next.number ? 1 : -1)
-    }
+    },
   }
 }
 </script>
 
 <template>
-  <AppFilter />
+  <AppFilter @change-type="this.filterType" />
+
   <h1 v-if="isLoading" class="loading">LOADING...</h1>
   <div v-else class="container py-5">
     <div class="row row-cols-3 g-4">
